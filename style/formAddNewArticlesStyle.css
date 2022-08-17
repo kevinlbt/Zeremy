@@ -1,0 +1,50 @@
+
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+    margin: 15px;
+    height: 20px;
+    width: 500px;
+}
+
+.valide-msg {
+    color: rgb(36, 151, 36);
+}
+
+.not-valide-msg {
+    color: rgb(206, 36, 36);
+}
+
+.button {
+        background-image: linear-gradient(to right, #085078 0%, #85D8CE  51%, #085078  100%);
+        margin: 10px 20px 10px 0px;
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;            
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+}
+
+.button:hover {
+        background-position: right center; 
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.no-liststyle {
+    list-style: none;
+}
