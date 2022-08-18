@@ -1,15 +1,24 @@
 
-
 .flex {
     display: flex;
+}
+.collum {
     flex-direction: column;
     align-items: center;
 }
-
+.list {
+    flex-direction: column;
+}
 .field {
     margin: 15px;
+}
+.input {
     height: 20px;
     width: 500px;
+}
+.text {
+    font-size: 1.4em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .valide-msg {
@@ -19,6 +28,8 @@
 .not-valide-msg {
     color: rgb(206, 36, 36);
 }
+
+/* main button */
 
 .button {
         background-image: linear-gradient(to right, #085078 0%, #85D8CE  51%, #085078  100%);
