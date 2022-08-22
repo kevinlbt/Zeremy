@@ -1,0 +1,16 @@
+{
+    "name": "kevinlb/zeremy-website",
+    "autoload": {
+        "psr-4": {
+            "MyApp\\": "src/"
+        }
+        
+    },
+    "authors": [
+        {
+            "name": "kevin le bot",
+            "email": "kevin.lebot@hotmail.fr"
+        }
+    ],
+    "require": {}
+}
