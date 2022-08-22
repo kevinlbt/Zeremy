@@ -22,4 +22,8 @@
     <?php if ($templates === "update-article") {require './src/templates/formUpdateArticle.php'; } ?>
 
 </body>
+
+<script src="http://localhost:8080/script/scriptSelect.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </html>

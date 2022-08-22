@@ -10,7 +10,7 @@
     flex-direction: column;
 }
 .field {
-    margin: 15px;
+    margin: 30px;
 }
 .input {
     height: 20px;
@@ -19,6 +19,9 @@
 .text {
     font-size: 1.4em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.categorie {
+    padding: 30px;
 }
 
 .valide-msg {

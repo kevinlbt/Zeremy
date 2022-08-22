@@ -33,7 +33,7 @@ class ArticleController extends abstractController {
     
     }
 
-    // add an new article in the database
+    // add an new article in the database with add categorie
     public static function addNewArticle () {
 
         self::$valideArticle = null;
@@ -41,10 +41,12 @@ class ArticleController extends abstractController {
         if (isset($_POST)) {
             if (isset($_POST['title']) && !empty($_POST['title'])
             && isset($_POST['content']) && !empty($_POST['content'])
-            && isset($_POST['link']) && !empty($_POST['link']) ) {
+            && isset($_POST['link']) && !empty($_POST['link'])
+            && isset($_POST['categorie']) && !empty($_POST['categorie']) ) {
 
                 $db = DataBase::getInstance();
 
+                //insert article into database
                 $query = $db->prepare('INSERT INTO `article` (`title`, `content`, `link`, `user_id`) VALUES (:title, :content, :link, :user_id);');
                 $params = [
                     'title' => strip_tags($_POST['title']),
@@ -52,24 +54,59 @@ class ArticleController extends abstractController {
                     'link' => strip_tags($_POST['link']),
                     'user_id' => 1  //temporaire
                 ];
+                $query->execute($params);
 
+                //retrieve last article id
+                $query = $db->prepare('SELECT LAST_INSERT_ID();');
+                $query->execute();
+                $lastId = $query->fetch();
+
+                //insert into the junction table the article_id and categorie_id in the database
+                $query = $db->prepare('INSERT INTO `article_catégorie` (`article_id`, `categorie_id`) VALUES (:article_id, :categorie_id);');
+                $params = [
+                    'article_id' => $lastId[0],
+                    'categorie_id' => $_POST['categorie']
+                ];
                 $query->execute($params);
 
                 self::$valideArticle = 'article valider et sauvegarder';
-
             }
 
         }
-
+        // if one/all of this field is empty 
         if (isset($_POST['title']) && empty($_POST['title'])
             || isset($_POST['content']) && empty($_POST['content'])
             || isset($_POST['link']) && empty($_POST['link']) ) {
 
-            self::$notValideArticle = 'merci de remplir tous les champs';
+                self::$notValideArticle = 'merci de remplir tous les champs';
             
         }
 
-        self::render('new-article');
+        // add a categorie
+        if (isset($_POST)) {
+            if (isset($_POST['addCategorie']) && !empty($_POST['addCategorie'])) {
+
+                $db = DataBase::getInstance();
+                $name = strip_tags($_POST['addCategorie']);
+
+                $query = $db->prepare('INSERT INTO `categorie` (`name`) VALUES (:name);');
+                $query->bindValue(':name', $name , PDO::PARAM_STR);
+
+                $query->execute();
+
+                self::$valideArticle = 'catégorie valider et sauvegarder';
+
+            }
+        }
+        // display all categorie in a select html
+        $db = DataBase::getInstance();
+
+        $query = $db->prepare('SELECT * FROM `categorie`');
+        $query->execute();
+
+        $categories = $query->fetchAll(PDO::FETCH_CLASS, 'categorie');
+
+        self::render('new-article',$categories);
 
     }
 
@@ -116,7 +153,6 @@ class ArticleController extends abstractController {
 
     }
 
-
     // delete an article in the database with id
     public static function deleteArticle () {
 
@@ -135,22 +171,4 @@ class ArticleController extends abstractController {
         }
     }
 
-    //add a categorie in the database
-    public static function addCategorie () {
-
-        if (isset($_POST)) {
-            if (isset($_POST['categorie']) && !empty($_POST['categorie'])) {
-
-                $db = DataBase::getInstance();
-                $name = strip_tags($_POST['categorie']);
-
-                $query = $db->prepare('INSERT INTO `categorie` (`name`) VALUES (:name);');
-                $query->bindValue(':name', $name , PDO::PARAM_STR);
-
-                $query->execute();
-
-                return self::$valideArticle = 'catégorie valider et sauvegarder';
-            }
-        }
-    }
 }

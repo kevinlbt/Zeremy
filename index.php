@@ -4,6 +4,7 @@
 require 'src/classes/router.php';
 
 require 'src/classes/Article.php';
+require 'src/classes/categorie.php';
 
 require 'src/classes/abstractController.php';
 require 'src/controllers/ArticleController.php';
