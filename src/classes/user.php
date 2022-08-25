@@ -7,6 +7,17 @@ class User {
     private ?string $password = null;
     private ?string $name = null;
 
+
+    public function __construct ($username = null, $password = null) {
+
+        if (!empty($username))
+            $this->username = $username;
+    
+        if (!empty($password)) {
+            $this->password = hash("sha512", $password);
+        }
+    }
+    
 //setter and getter
 
     public function getId () {
