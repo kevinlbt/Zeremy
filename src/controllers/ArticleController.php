@@ -1,6 +1,6 @@
 <?php
 
-class ArticleController extends abstractController {
+class ArticleController extends AbstractController {
 
     private static ?string $valideArticle = null;
 
@@ -18,13 +18,11 @@ class ArticleController extends abstractController {
     }
     
     // display all article from the database in a html list
-    public static function displayArticle() {
+    public static function displayAllArticle() {
 
-        $db = DataBase::getInstance();
+        $articles = Article::displayArticle();
 
-        $query = $db->prepare('SELECT * FROM `article`');
-        $query->execute();
-        $articles = $query->fetchAll(PDO::FETCH_CLASS, 'Article');
+        $articles = array_reverse($articles);
 
         self::render('articles', $articles);
 
@@ -35,79 +33,45 @@ class ArticleController extends abstractController {
 
         self::$valideArticle = null;
 
-        if (isset($_POST)) {
-            if (isset($_POST['title']) && !empty($_POST['title'])
-            && isset($_POST['content']) && !empty($_POST['content'])
-            && isset($_POST['link']) && !empty($_POST['link'])
-            && isset($_POST['categorie']) && !empty($_POST['categorie']) ) {
+        $result = null;
 
-                $db = DataBase::getInstance();
+        $result = Article::newArticle();
 
-                //first request, insert article into database
-                $query = $db->prepare('INSERT INTO `article` (`title`, `content`, `link`, `user_id`) VALUES (:title, :content, :link, :user_id);');
-                $params = [
-                    'title' => strip_tags($_POST['title']),
-                    'content' => strip_tags($_POST['content']),
-                    'link' => strip_tags($_POST['link']),
-                    'user_id' => $_SESSION['logged_userid']
-                ];
-                $query->execute($params);
+        if ($result)
+            $lastId = Article::retrievelastArticleId();
 
-                //second request, retrieve last article id
-                $query = $db->prepare('SELECT LAST_INSERT_ID();');
-                $query->execute();
-                $lastId = $query->fetch();
+        if (isset($_POST['categorie']) && !empty($_POST['categorie']) && $result) {
 
-                //third request, insert into the junction table the article_id and categorie_id in the database
-                //use foreach for the case where we have more than 1 categorie
-                foreach($_POST['categorie'] as $categorie) {
+             //use foreach for the case where we have more than 1 categorie
+            foreach($_POST['categorie'] as $categorie) {
 
-                    $query = $db->prepare('INSERT INTO `article_catégorie` (`article_id`, `categorie_id`) VALUES (:article_id, :categorie_id);');
-                    $params = [
-                        'article_id' => $lastId[0],
-                        'categorie_id' => $categorie
-                    ];
-                    $query->execute($params);
-
-                }
-
-                self::$valideArticle = 'article valider et sauvegarder';
+                $result = Categorie::insertJunctionTableCategorie($lastId, $categorie);
             }
+        }
+
+        if ($result) {
+
+            self::$valideArticle = 'article valider et sauvegarder';
 
         }
-        // if one/all of this field is empty 
-        if (isset($_POST['title']) && empty($_POST['title'])
-            || isset($_POST['content']) && empty($_POST['content'])
-            || isset($_POST['link']) && empty($_POST['link']) ) {
+     
+        // if one or all of this field is empty 
+        if (isset($_POST['title']) && empty($_POST['title']) 
+            || isset($_POST['link']) && empty($_POST['link']) 
+            || isset($_POST['categorie']) && empty ($_POST['categorie']) ) {
 
-                self::$notValideArticle = 'merci de remplir tous les champs';
+                self::$notValideArticle = 'merci de remplir les champs obligatoires';
             
         }
 
         // add a categorie
-        if (isset($_POST)) {
-            if (isset($_POST['addCategorie']) && !empty($_POST['addCategorie'])) {
-
-                $db = DataBase::getInstance();
-                $name = strip_tags($_POST['addCategorie']);
-
-                $query = $db->prepare('INSERT INTO `categorie` (`name`) VALUES (:name);');
-                $query->bindValue(':name', $name , PDO::PARAM_STR);
-
-                $query->execute();
-
-                self::$valideArticle = 'catégorie valider et sauvegarder';
-
-            }
-        }
+        if (isset($_POST['addCategorie']))
+            self::$valideArticle = Categorie::addCategorie();
+        
         // display all categorie in a select html
-        $db = DataBase::getInstance();
+        $categories = Categorie::displayCategories();
 
-        $query = $db->prepare('SELECT * FROM `categorie`');
-        $query->execute();
-
-        $categories = $query->fetchAll(PDO::FETCH_CLASS, 'categorie');
-
+        //render
         self::render('new-article',$categories);
 
     }
@@ -115,67 +79,86 @@ class ArticleController extends abstractController {
     // update an already created article in the database
     public static function updateArticle () {
         
-        $id = explode('/', $_GET['url']);
-
-        if (isset($_POST)) {
-            if (isset($_POST['title']) && !empty($_POST['title'])
-            && isset($_POST['content']) && !empty($_POST['content'])
-            && isset($_POST['link']) && !empty($_POST['link']) ) {
-
-                $db = DataBase::getInstance();
-                $query = $db->prepare('UPDATE `article` SET `title`=:title, `content`=:content, `link`=:link WHERE `id`=:id;');
-                $params = [
-                    'title' => strip_tags($_POST['title']),
-                    'content' => strip_tags($_POST['content']),
-                    'link' => strip_tags($_POST['link']),
-                    'id' => $id[1]
-                ];
-
-                $query->execute($params);
-
-                header('location: /articles');
-
-            }
-
-        }
-
-        if(isset($_GET['url']) && !empty($_GET['url'])) {
-
-            $db = DataBase::getInstance();
+        if(isset($_GET['url']) && !empty($_GET['url'] )) {
             
-            $query = $db->prepare('SELECT * FROM `article` WHERE `id`=:id;');
-            $query->bindValue(':id', $id[1] , PDO::PARAM_INT);
-            $query->execute();
-            $query->setFetchMode(PDO::FETCH_CLASS, 'Article');
-            $article = $query->fetch();
-
+            $id = explode('/', $_GET['url']);
         }
+        
+        $article = Article::getArticleContent($id);
 
-        self::render('update-article', $article);
+        //display all categorie in a select html
+        $allcategories = Categorie::displayCategories();
+
+        //retrieve categories of the select article
+        $categoriesArticle = Categorie::retrieveArticleCategories($id);
+
+        //return a object table categories without the selected article categories
+        $allcategories = array_udiff($allcategories, $categoriesArticle, function($a, $b) {return $a <=> $b;});
+
+        Article::updateArticle($id);
+
+        self::render('update-article', [$article, $allcategories, $categoriesArticle]);
 
     }
 
     // delete an article in the database with id
     public static function deleteArticle () {
 
-        if(isset($_GET['url']) && !empty($_GET['url'])) {
-
-            $id = explode('/', $_GET['url']);
-
-            $db = DataBase::getInstance();
-            
-            //first request, for deleting article_categorie from the database
-            $query = $db->prepare('DELETE article_catégorie FROM article_catégorie JOIN article ON article_catégorie.article_id = article.id WHERE article.id =:id;');
-            $query->bindValue(':id', $id[1], PDO::PARAM_INT);
-            $query->execute();
-            
-            //second request, for deleting article from the database
-            $query = $db->prepare('DELETE FROM `article` WHERE `id`=:id;');
-            $query->bindValue(':id', $id[1], PDO::PARAM_INT);
-            $query->execute();
+        Article::deleteArticle();
         
-            header('Location: /articles');
-        }
     }
 
+    //insert article.id into published table and know which articles is published
+    public static function publishedArticle () {
+
+        if(isset($_GET['url']) && !empty($_GET['url'] )) {
+
+            $db = DataBase::getInstance();
+
+            $id = explode('/', $_GET['url']);
+            
+            $query = $db->prepare('INSERT INTO `articles_publier`(`article_id`) VALUES (:id); ');
+            $query->bindValue(':id', $id[1], PDO::PARAM_INT);
+            $query->execute();
+            
+            header('location: /Zeremy-website/articles');
+
+        }
+    }
+    
+    //delete article.id from published table
+    public static function unPublishedArticle () {
+        
+        if(isset($_GET['url']) && !empty($_GET['url'] )) {
+                    
+            $db = DataBase::getInstance();
+
+            $id = explode('/', $_GET['url']);
+            
+            $query = $db->prepare('DELETE articles_publier FROM articles_publier JOIN article ON articles_publier.article_id = article.id WHERE article.id =:id;');
+            $query->bindValue(':id', $id[1], PDO::PARAM_INT);
+            $query->execute();
+            
+            header('location: /Zeremy-website/articles');
+        }    
+    }
+    
+    //retrieve published id articles and show publish button if not publish
+    public static function publishedButton ($id) {
+        
+        $db = DataBase::getInstance();
+
+        $query = $db->prepare('SELECT article_id FROM `articles_publier`');
+        $query->execute();
+        $query->setFetchMode(PDO::FETCH_COLUMN, 0);
+        
+        $pubIdArticle = $query->fetchAll();
+        
+        if (in_array($id, $pubIdArticle)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
