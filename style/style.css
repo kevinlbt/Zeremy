@@ -1,17 +1,468 @@
 
 :root {
     --plyr-color-main: #a6032e;
-    --back-color: #161b22;
+    --back-color: #3a4759;
     --main-color: #a6032e;
-    --text-color: aliceblue;
+    --text-color: black;
+    --text-color-white: aliceblue;
+    --font-title: chantal,sans-serif;
     --font: 5vw;
-    --line: calc(var(--font) * 3.2);
+    --line: calc(var(--font) * 4.5);
     --move: calc(-1 * var(--line));
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* ---------------------------- style css cms ----------------------------------- */
+/* ------------------------------------------------------------------------------ */
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+/*---------------title - text----------------*/
+
+.welcome {
+    font-size: 1.7em;
+    align-self: center;
+    padding: 0px 15px;
+}
+.article {
+    font-size: 2.7em;;
+    padding: 20px 0px;
+}
+.articletitle {
+    font-size: 2em;
+    padding: 20px 0px;
+}
+.textcms {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 5px 5px;
+}
+.size {
+    font-size: 1.7em;
+}
+.valide-msg {
+    color: rgb(36, 151, 36);
+}
+.not-valide-msg {
+    color: rgb(206, 36, 36);
+}
+.titlecms {
+    padding-top: 20px;
+}
+.no-underline {
+    text-decoration: none;
+}
+.no-liststyle {
+    list-style: none;
+}
+.head-color {
+    color: rgb(218, 218, 218);
+}
+
+/*---------- bloc - input - select----------*/
+
+.align {
+    align-items: center;
+}
+.list {
+    flex-direction: column;
+}
+.field {
+    margin: 30px;
+}
+.input {
+    height: 25px;
+    width: 50%;
+    border: 3px solid #a7afc2 ;
+    border-radius: 8px;
+    outline: none;
+}
+.input:focus {
+    border: 3px solid #0a6792;
+}
+.select {
+    width: 400px;
+}
+.categorie {
+    padding: 30px;
+}
+.no-padding {
+    padding: 0;
+}
+.login {
+    margin-top: 80px;
+    border: 1em solid #0a6792;
+}
+.logout {
+    justify-content: space-between;
+}
+.border {
+    border: 2px solid #353332;
+    border-radius: 8px;
+    margin: 20px 0px;
+    padding: 5px 10px;
+}
+.form {
+    margin: 5px 200px;
+}
+.gray-back {
+    background-color: #f3eee7;
+}
+
+
+/* ---------header--------- */
+
+.head {
+    background-color: #1f1d1d;
+    height: 4.5em;
+}
+
+.align {
+    align-items: center;
+}
+
+.link {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: lighter;
+}
+
+/* nav button */
+
+.navcms {
+    margin: 15px;
+    text-align: center;
+}
+
+.navcms a {
+    background-color: #0a6792;
+    text-align: center;
+    padding: 7px 20px;
+    border-radius: 10px;
+    font-size:1em;
+    color:#fff;
+    border:2px solid #0a6792;
+    transition:800ms ease all;
+}
+
+.navcms a:hover {
+    color:#0a6792;
+    background:#fff;
+    transition:800ms ease all;
+}
+
+/* logout button */
+
+.logout-button {
+    background:#0a6792;
+    color:#fff;
+    border:none;
+    font-size:1em;
+    padding:7px 20px;
+    margin: 15px;
+    cursor:pointer;
+    transition:800ms ease all;
+    border:2px solid #0a6792;
+    border-radius: 10px;
+}
+
+.logout-button:hover {
+    background:#fff;
+    transition:800ms ease all;
+}
+
+.logout-button a {
+    color:#fff;
+}
+
+.logout-button a:hover {
+    color:#0a6792;
+    transition:800ms ease all;
+}
+
+
+/* -----------------articles----------------- */
+/* main button */
+
+.button {
+    background:#0a6792;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:40px;
+    font-size:1.2em;
+    padding:0 1.6em;
+    margin: 15px;
+    cursor:pointer;
+    transition:400ms ease all;
+    outline:none;
+    border-radius: 5px;
+  }
+
+.button:hover{
+    background:#f3eee7;
+    color:#0a6792;
+  }
+
+.button:before, .button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #0a6792;
+    transition:400ms ease all;
+  }
+
+.button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+
+.button:hover:before, .button:hover:after{
+    width:100%;
+    transition:400ms ease all;
+  }
+
+/* delete button */
+
+.btn-delete{
+    background:#ac2b1d;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:40px;
+    font-size:1.2em;
+    padding:0 1.6em;
+    margin: 15px;
+    cursor:pointer;
+    transition:400ms ease all;
+    outline:none;
+    border-radius: 5px;
+  }
+  
+.btn-delete:hover{
+    background:#f3eee7;
+    color:#ac2b1d;
+  }
+  
+.btn-delete:before, .btn-delete:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #ac2b1d;
+    transition:400ms ease all;
+  }
+  
+.btn-delete:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  
+.btn-delete:hover:before, .btn-delete:hover:after{
+    width:100%;
+    transition:400ms ease all;
+  }
+
+/* published button */
+
+.publi-button {
+    background:#1e7504;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:40px;
+    font-size:1.2em;
+    padding:0 1.6em;
+    margin: 15px;
+    cursor:pointer;
+    transition:400ms ease all;
+    outline:none;
+    border-radius: 5px;
+  }
+
+.publi-button:hover{
+    background:#f3eee7;
+    color:#1e7504;
+  }
+
+.publi-button:before, .publi-button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1e7504;
+    transition:400ms ease all;
+  }
+
+.publi-button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+
+.publi-button:hover:before, .publi-button:hover:after{
+    width:100%;
+    transition:400ms ease all;
+  }
+
+/* login */
+
+.sizelog {
+    font-size: 1.5em;
+}
+
+/*---------------------modal delete style ------------------------*/
+
+.modalCms {
+    text-align: center;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 150px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+ }
+.modalContentCms {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #fefefe;
+    border-radius: 0.5em;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+ }
+.modalContentCms button {
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 0.3em;
+    padding: 10px;
+ }
+.cancelCms {
+    align-self: center;
+    text-align: center;
+}
+.cancelCms:hover {
+    background-color: rgb(167, 167, 167);
+ }
+
+/*---------------------multi select style-------------------------*/ 
+
+.multiselect-dropdown{
+    display: inline-block;
+    padding: 2px 5px 0px 5px;
+    margin: 30px 0px;
+    border-radius: 4px;
+    border: solid 1px #ced4da;
+    background-color: white;
+    position: relative;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+  }
+.multiselect-dropdown span.optext, .multiselect-dropdown span.placeholder{
+    margin-right:0.5em; 
+    margin-bottom:2px;
+    padding:1px 0; 
+    border-radius: 4px; 
+    display:inline-block;
+  }
+.multiselect-dropdown span.optext{
+    background-color:lightgray;
+    padding:1px 0.75em; 
+  }
+.multiselect-dropdown span.optext .optdel {
+    float: right;
+    margin: 0 -6px 1px 5px;
+    font-size: 0.7em;
+    margin-top: 2px;
+    cursor: pointer;
+    color: #666;
+  }
+.multiselect-dropdown span.optext .optdel:hover { color: #c66;}
+.multiselect-dropdown span.placeholder{
+    color:#ced4da;
+  }
+.multiselect-dropdown-list-wrapper{
+    box-shadow: gray 0 3px 8px;
+    width: 400px;
+    z-index: 100;
+    padding:2px;
+    border-radius: 4px;
+    border: solid 1px #ced4da;
+    display: none;
+    margin: -1px;
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    background: white;
+  }
+.multiselect-dropdown-list-wrapper .multiselect-dropdown-search{
+    margin-bottom:5px;
+    width: 150px;
+  }
+.multiselect-dropdown-list{
+    padding:2px;
+    height: 15rem;
+    width: 170px;
+    overflow-y:auto;
+    overflow-x: hidden;
+  }
+.multiselect-dropdown-list::-webkit-scrollbar {
+    width: 6px;
+  }
+.multiselect-dropdown-list::-webkit-scrollbar-thumb {
+    background-color: #bec4ca;
+    border-radius:3px;
+  }
+.multiselect-dropdown-list div{
+    padding: 5px;
+  }
+.multiselect-dropdown-list input{
+    height: 1.15em;
+    width: 1.15em;
+    margin-right: 0.35em;  
+  }
+ 
+.multiselect-dropdown-list div:hover{
+    background-color: #ced4da;
+  }
+.multiselect-dropdown span.maxselected {width:100%;}
+.multiselect-dropdown-all-selector {border-bottom:solid 1px #999;}
+
+
+/* ------------------------------------------------------------------------------ */
+/* ---------------------------- style css website ------------------------------- */
+/* ------------------------------------------------------------------------------ */
+
 .plyr {
     display: block;
-    width: 100%
-    height: 100%;
+    width: auto;
+    height: auto;
     border-radius: 4px;
     cursor: pointer;
     background-color: hsla(0, 0%, 0%, 0.48);
@@ -20,24 +471,19 @@
     display: none; 
     
 }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-.container {
+.containerWeb {
     width: 80%;
     margin: auto;
 }
- body {
-    background-color: var(--back-color);
-    background-image: 
-        url('../assets/images/phare.png'),  
-        url('../assets/images/montagne.png');
-    max-height: 100vh; 
-    background-position: top center, top 650px center;
-    background-repeat: no-repeat, no-repeat;
-    background-size: 1000px;
+.lighthouse {
+    /*background-color: var(--back-color);*/
+    /*background-image: */
+    /*    url('../assets/images/phare.png'),  */
+    /*    url('../assets/images/montagne.png');*/
+    /*max-height: 100vh; */
+    /*background-position: top center, top 650px center;*/
+    /*background-repeat: no-repeat, no-repeat;*/
+    /*background-size: 1000px;*/
 } 
 
 .flex {
@@ -47,15 +493,21 @@
     flex-direction: column;
 }
 .title {
-    font-family: 'Bebas Neue', cursive;
+    font-family: var(--font-title);
 }
 .text {
     font-family: 'Montserrat', sans-serif;
 }
-.white {
+.color {
     color: var(--text-color)
 }
+
+.white {
+    color: var(--text-color-white);
+}
+
 /* header nav bar */
+
 .logo {
     align-self: center;
     margin: 5px 15px;
@@ -91,9 +543,10 @@
 
 /* articles video*/
 
-h1 {
+.realisation {
     text-align: center;
-    margin: 20px;
+    margin: 10px 10px 40px 10px;
+    font-size: 3em;
 }
 
 .overlap {
@@ -101,10 +554,9 @@ h1 {
     margin-top: var(--move);
     margin-bottom: 6rem;
     padding: 0px 5px;
-    line-height: vat(--line);
     text-align: center;
     font-size: var(--font);
-    
+    letter-spacing: 1px;
     
 }
 
@@ -121,6 +573,9 @@ h1 {
 
 /* modal video */
 
+.filter {
+    filter: brightness(0.7);
+}
 .modal {
     text-align: center;
     display: none;
@@ -134,7 +589,6 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5);
  }
  .modalContent {
-    font-size: 20px;
     font-weight: bold;
     color: black;
     background-color: var(--back-color);
@@ -143,12 +597,125 @@ h1 {
     padding: 20px;
     border: 1px solid var(--back-color);
     width: 73%;
-    height: 98%;
+    height: 75%;
+ }
+ .modalContent h2 {
+     font-size: 1.7em;
+ }
+ .modalContent p {
+     padding: 20px 10px;
+     font-size: 1em;
  }
 .videotitle {
     padding-bottom: 5px;
 }
 
+.footer {
+    background-color: var(--back-color);
+    padding: 30px 20px 10px 20px;
+    margin-top: 70px;
+}
+
+/* social icones */
+
+.social-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: -10px;
+}
+.social-buttons__button {
+  margin: 10px 5px 0;
+}
+
+.social-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  width: 55px;
+  height: 55px;
+  text-decoration: none;
+  border-radius: 100%;
+  background: #fff;
+  text-align: center;
+}
+.social-button::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  display: block;
+  width: 0;
+  height: 0;
+  border-radius: 100%;
+  transition: 0.3s;
+}
+.social-button:focus, .social-button:hover {
+  color: #fff;
+}
+.social-button:focus::after, .social-button:hover::after {
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  margin-left: calc(-50% - 1px);
+}
+.social-button i,
+.social-button svg {
+  position: relative;
+  z-index: 1;
+  transition: 0.3s;
+}
+.social-button i {
+  font-size: 23px;
+}
+.social-button--mail {
+  color: #f4952f;
+}
+.social-button--mail::after {
+  background: #f4952f;
+}
+.social-button--instagram {
+  color: #833AB4;
+}
+.social-button--instagram::after {
+  background: #833AB4;
+}
+.social-button--linkedin {
+  color: #0077b5;
+}
+.social-button--linkedin::after {
+  background: #0077b5;
+}
+.social-button--youtube {
+  color: #f42a2a;
+}
+.social-button--youtube::after {
+  background: #f42a2a;
+}
+.social-button--tiktok {
+  color: #000d14;
+}
+.social-button--tiktok::after {
+  background: #000d14;
+}
+
+
+
+.bar {
+    margin: 20px;
+}
+
+.bar li {
+    padding: 15px;
+}
+
+.bar li a {
+    text-decoration: none;
+    color: var(--text-color-white);
+    font-family: 'Bebas Neue';
+    font-size: 1.5em;
+}
 /*--------------------------------------------------------------------*/
 /* ----------------------------media queries--------------------------*/
 /*--------------------------------------------------------------------*/
@@ -156,12 +723,12 @@ h1 {
 @media screen and (min-width: 1024px) {
     
     :root {
-        --font: 1.7vw;
+        --font: 1.5vw;
     }
-    .container {
+    .containerWeb {
         width: 90%;
     }
-    body {
+    .lighthouse {
 
         background-size: 2000px;
         background-position: top center, top 1300px center;
@@ -182,6 +749,9 @@ h1 {
     
     .overlap {
         margin-bottom: 4rem;
+    }
+    .modalContent {
+        height: 98%;
     }
 }
 

@@ -46,9 +46,9 @@ class Router {
 
             $this->addRoute('update-article',['ArticleController','updateArticle']);
             
-            $this->addRoute('publishedArticle',['ArticleController','publishedArticle']);
+            $this->addRoute('publishedArticle',['ArticleController','publishArticle']);
             
-            $this->addRoute('unPublishedArticle',['ArticleController','unPublishedArticle']);
+            $this->addRoute('unPublishedArticle',['ArticleController','unPublishArticle']);
 
         }
     }

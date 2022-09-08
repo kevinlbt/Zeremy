@@ -1,10 +1,10 @@
 
 
-<header class="container">
+<header class="containerWeb">
 
     <nav class="flex nav-bar">
         <div class="logo">
-            <img src="./assets/logo/logo-color.png" width="200" alt="logo du site">
+            <img src="./assets/logo/logo-final.png" width="200" alt="logo du site">
         </div>
         <ul class="nav title">
             <li><a href="#">Home</a></li>

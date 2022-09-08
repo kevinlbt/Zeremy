@@ -14,7 +14,7 @@ class User {
             $this->username = $username;
     
         if (!empty($password)) {
-            $this->password = hash("sha512", $password);
+            $this->password = $password;
         }
     }
     

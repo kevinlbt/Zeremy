@@ -2,7 +2,7 @@
 window.addEventListener("DOMContentLoaded", () => {
     
 
-    const player = Plyr.setup("#player", { 
+    const player = Plyr.setup(".one", { 
         clickToPlay: false,
         controls: [
             // 'play-large', // The large play button in the center
@@ -11,13 +11,11 @@ window.addEventListener("DOMContentLoaded", () => {
             'mute', // Toggle mute
             'volume', // Volume control
             // 'settings', // Settings menu
-            'pip', // Picture-in-picture (currently Safari only)
-            'fullscreen' // Toggle fullscreen
         ],
         
     });
     
-    const playertwo = Plyr.setup("#playertwo", { 
+    const playertwo = Plyr.setup(".two", { 
         autoplay: true,
         muted: true, 
         volume: 100,
@@ -34,6 +32,43 @@ window.addEventListener("DOMContentLoaded", () => {
         
     });
     
+//----------------script modal video------------------
+    
+    let modal = document.querySelectorAll(".modal");
+    let btn = document.querySelectorAll(".openModal");
+    
+    function hideModal(id) {
+        
+        document.getElementById('modal'+id).style.display = "none";
+        
+    }
+    
     window.player = player;
-});
+     
+    for (let i = 0 ; i <= modal.length ; i++) {
+    
+        btn[i].addEventListener("click", () => {
+            
+            modal[i].style.display = "block";
+            playertwo[i].increaseVolume(10);
+            playertwo[i].play();
+        });
+
+        
+        window.onclick = function(event) {
+            
+            let id = event.target.getAttribute('data-id');
+            if (id) {
+                hideModal(id);
+                
+                if (!playertwo[id].paused)
+                playertwo[id].pause();
+                
+            } 
+            
+        };
+    
+    }
+    
+})
 

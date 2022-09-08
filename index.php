@@ -17,3 +17,4 @@ $router = new Router($route);
 $router->addAllRoutes();
 
 $router->resolve();
+

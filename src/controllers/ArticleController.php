@@ -2,19 +2,19 @@
 
 class ArticleController extends AbstractController {
 
-    private static ?string $valideArticle = null;
+    private static ?string $validArticle = null;
 
-    private static ?string $notValideArticle = null;
+    private static ?array $notValidArticle = [];
 
     // getter
-    public static function getvalideArticle () {
+    public static function getValidArticle () {
 
-        return self::$valideArticle;
+        return self::$validArticle;
     }
 
-    public static function getnotValideArticle () {
+    public static function getnotValidArticle () {
 
-        return self::$notValideArticle;
+        return self::$notValidArticle;
     }
     
     // display all article from the database in a html list
@@ -31,48 +31,44 @@ class ArticleController extends AbstractController {
     // add an new article in the database with add categorie
     public static function addNewArticle () {
 
-        self::$valideArticle = null;
-
-        $result = null;
-
-        $result = Article::newArticle();
-
-        if ($result)
-            $lastId = Article::retrievelastArticleId();
-
-        if (isset($_POST['categorie']) && !empty($_POST['categorie']) && $result) {
-
-             //use foreach for the case where we have more than 1 categorie
-            foreach($_POST['categorie'] as $categorie) {
-
-                $result = Categorie::insertJunctionTableCategorie($lastId, $categorie);
+        self::$validArticle = null;
+        
+        if (Errors::checkErrorAddArticle()) {
+        
+            self::$notValidArticle = Errors::getErrors();
+        }
+        
+        else {
+            
+            $result = Article::newArticle();
+            
+            if ($result)
+                $lastId = Article::retrievelastArticleId();
+    
+            if (isset($_POST['category']) && !empty($_POST['category']) && $result) {
+    
+                //use foreach for the case where we have more than 1 categorie
+                foreach($_POST['category'] as $category) {
+    
+                    $result = Category::insertJunctionTableCategory($lastId, $category);
+                }
+            }
+    
+            if ($result === true) {
+    
+                self::$validArticle = 'article valider et sauvegarder';
             }
         }
-
-        if ($result) {
-
-            self::$valideArticle = 'article valider et sauvegarder';
-
-        }
-     
-        // if one or all of this field is empty 
-        if (isset($_POST['title']) && empty($_POST['title']) 
-            || isset($_POST['link']) && empty($_POST['link']) 
-            || isset($_POST['categorie']) && empty ($_POST['categorie']) ) {
-
-                self::$notValideArticle = 'merci de remplir les champs obligatoires';
-            
-        }
-
+        
         // add a categorie
-        if (isset($_POST['addCategorie']))
-            self::$valideArticle = Categorie::addCategorie();
+        if (isset($_POST['addCategory']))
+            self::$validArticle = Category::addCategory();
         
         // display all categorie in a select html
-        $categories = Categorie::displayCategories();
+        $category = Category::displayCategory();
 
         //render
-        self::render('new-article',$categories);
+        self::render('new-article',$category);
 
     }
 
@@ -82,22 +78,22 @@ class ArticleController extends AbstractController {
         if(isset($_GET['url']) && !empty($_GET['url'] )) {
             
             $id = explode('/', $_GET['url']);
-        }
         
+        }
         $article = Article::getArticleContent($id);
 
         //display all categorie in a select html
-        $allcategories = Categorie::displayCategories();
+        $allcategory = Category::displayCategory();
 
         //retrieve categories of the select article
-        $categoriesArticle = Categorie::retrieveArticleCategories($id);
+        $categoryArticle = Category::retrieveArticleCategory($id);
 
         //return a object table categories without the selected article categories
-        $allcategories = array_udiff($allcategories, $categoriesArticle, function($a, $b) {return $a <=> $b;});
+        $allcategory = array_udiff($allcategory, $categoryArticle, function($a, $b) {return $a <=> $b;});
 
         Article::updateArticle($id);
 
-        self::render('update-article', [$article, $allcategories, $categoriesArticle]);
+        self::render('update-article', [$article, $allcategory, $categoryArticle]);
 
     }
 
@@ -109,7 +105,7 @@ class ArticleController extends AbstractController {
     }
 
     //insert article.id into published table and know which articles is published
-    public static function publishedArticle () {
+    public static function publishArticle () {
 
         if(isset($_GET['url']) && !empty($_GET['url'] )) {
 
@@ -117,9 +113,7 @@ class ArticleController extends AbstractController {
 
             $id = explode('/', $_GET['url']);
             
-            $query = $db->prepare('INSERT INTO `articles_publier`(`article_id`) VALUES (:id); ');
-            $query->bindValue(':id', $id[1], PDO::PARAM_INT);
-            $query->execute();
+            Article::publishArticleId($id);
             
             header('location: /Zeremy-website/articles');
 
@@ -127,7 +121,7 @@ class ArticleController extends AbstractController {
     }
     
     //delete article.id from published table
-    public static function unPublishedArticle () {
+    public static function unPublishArticle () {
         
         if(isset($_GET['url']) && !empty($_GET['url'] )) {
                     
@@ -135,24 +129,16 @@ class ArticleController extends AbstractController {
 
             $id = explode('/', $_GET['url']);
             
-            $query = $db->prepare('DELETE articles_publier FROM articles_publier JOIN article ON articles_publier.article_id = article.id WHERE article.id =:id;');
-            $query->bindValue(':id', $id[1], PDO::PARAM_INT);
-            $query->execute();
+            Article::unPublishArticle($id);
             
             header('location: /Zeremy-website/articles');
         }    
     }
     
-    //retrieve published id articles and show publish button if not publish
-    public static function publishedButton ($id) {
+    //retrieve published id articles and show publish button if not publish, else show unpublish button
+    public static function publishButton ($id) {
         
-        $db = DataBase::getInstance();
-
-        $query = $db->prepare('SELECT article_id FROM `articles_publier`');
-        $query->execute();
-        $query->setFetchMode(PDO::FETCH_COLUMN, 0);
-        
-        $pubIdArticle = $query->fetchAll();
+        $pubIdArticle = Article::retrieveAllPublishArticle();
         
         if (in_array($id, $pubIdArticle)) {
             return false;
@@ -160,5 +146,6 @@ class ArticleController extends AbstractController {
         else {
             return true;
         }
+
     }
 }

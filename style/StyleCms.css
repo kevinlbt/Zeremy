@@ -12,7 +12,7 @@
 
 /* --------------title - text----------------*/
 
-h1 {
+.welcome {
     font-size: 1.7em;
     align-self: center;
     padding: 0px 15px;

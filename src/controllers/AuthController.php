@@ -4,17 +4,18 @@ class AuthController extends AbstractController {
     
     private static ?string $valideUserLog = null;
 
-    public static function getValideUserLog() {
+    public static function getValidUserLog() {
 
         return self::$valideUserLog;
     }
 
+    //login user
     public static function login () {
         
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             
-            $user = Authenticator::authenticate(new User($_POST['username'], $_POST['password']));
-
+            $user = Authenticator::authenticate(new User($_POST['username'],$_POST['password']));
+            
             if ($user === false) {
                 
                 self::$valideUserLog = "indentifiant incorrecte";
@@ -28,6 +29,7 @@ class AuthController extends AbstractController {
         self::render('login');
     }
     
+    //logout user
     public static function logout () {
 
         Authenticator::logout();
@@ -35,3 +37,4 @@ class AuthController extends AbstractController {
         header('Location: /Zeremy-website/login');
     }
 }
+

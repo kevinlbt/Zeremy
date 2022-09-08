@@ -3,9 +3,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     
 
-    let modal = document.querySelectorAll(".modal");
-    let btn = document.querySelectorAll(".openModal");
-    let btnclose = document.querySelectorAll(".cancel");
+    let modal = document.querySelectorAll(".modalCms");
+    let btn = document.querySelectorAll(".openModalCms");
+    let btnclose = document.querySelectorAll(".cancelCms");
 
 
 for (let i = 0 ; i <= modal.length ; i++) {
