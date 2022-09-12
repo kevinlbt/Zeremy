@@ -1,3 +1,8 @@
+<div class="flex collum align">
+    <?php foreach(ArticleController::getnotValidArticle() as $notvalid) : ?>
+      <p class="not-valide-msg flex collum textcms"><?php  echo $notvalid; ?></p>
+    <?php endforeach; ?>
+</div>
 
 <form action="" method="POST" class="flex collum align border gray-back">
     <label for="title" class="textcms size">Titre</label>
@@ -17,5 +22,5 @@
     </div>
     <label for="link" class="textcms size">Identifiant de la vidéo</label>
     <input type="text" name="link" class="field input" value="<?= $result[0]->getLink() ?>">
-    <button type="submit" class="button">modifier</button>
+    <button type="submit" class="button default">modifier</button>
 </form>

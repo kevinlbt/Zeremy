@@ -14,6 +14,8 @@
             <input type="password" name="password" class="field input"/>
             <input type="submit" value="Me connecter" class="button"/>
         </form>
-        <p class="not-valide-msg text"><?= AuthController::getValidUserLog(); ?></p>
+        <?php foreach(AuthController::getValidUserLog() as $notvalid) : ?>
+          <p class="not-valide-msg textcms"><?php  echo $notvalid; ?></p>
+        <?php endforeach; ?>
     <?php endif; ?>
 </div>

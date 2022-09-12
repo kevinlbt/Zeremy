@@ -2,28 +2,53 @@
 
 class AuthController extends AbstractController {
     
-    private static ?string $valideUserLog = null;
+    private static ?array $valideUserLog = [];
 
     public static function getValidUserLog() {
 
         return self::$valideUserLog;
     }
 
+    //sanitized input data 
+    private static function sanitizing ($data) {
+        
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = strip_tags($data);
+        return $data;
+        
+    }
+    
     //login user
     public static function login () {
         
-        if (!empty($_POST['username']) && !empty($_POST['password'])) {
+        if (isset($_POST['username']) && isset($_POST['password'])) {
             
-            $user = Authenticator::authenticate(new User($_POST['username'],$_POST['password']));
+            if (Errors::checkErrorAuth()) {
+        
+                self::$valideUserLog = Errors::getErrors();
             
-            if ($user === false) {
-                
-                self::$valideUserLog = "indentifiant incorrecte";
-                return self::render('login');
-
             }
             
-            header('location: /Zeremy-website/articles');
+            else {
+                
+                $username = self::sanitizing($_POST['username']);
+                $password = self::sanitizing($_POST['password']);
+                
+                $user = Authenticator::authenticate(new User($username,$password));
+                
+                if ($user === false) {
+                    
+                    self::$valideUserLog[] = "indentifiant incorrecte";
+                    return self::render('login');
+    
+                }
+                
+                else {
+                    
+                    header('location: /Zeremy-website/articles');
+                }
+            }
         }   
 
         self::render('login');

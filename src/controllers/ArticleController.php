@@ -23,17 +23,19 @@ class ArticleController extends AbstractController {
         $articles = Article::displayArticle();
 
         $articles = array_reverse($articles);
+        
+        $category = Category::displayCategory();
 
-        self::render('articles', $articles);
+        self::render('articles', [$articles, $category]);
 
     }
 
-    // add an new article in the database with add categorie
+    // add an new article in the database with a categorie
     public static function addNewArticle () {
 
         self::$validArticle = null;
         
-        if (Errors::checkErrorAddArticle()) {
+        if (Errors::checkErrorArticle()) {
         
             self::$notValidArticle = Errors::getErrors();
         }
@@ -57,6 +59,7 @@ class ArticleController extends AbstractController {
             if ($result === true) {
     
                 self::$validArticle = 'article valider et sauvegarder';
+                $_POST = null;
             }
         }
         
@@ -79,22 +82,29 @@ class ArticleController extends AbstractController {
             
             $id = explode('/', $_GET['url']);
         
+            if (Errors::checkErrorArticle()) {
+            
+                self::$notValidArticle = Errors::getErrors();
+            }
+            
+            else {
+        
+                Article::updateArticle($id);
+            }
+            
+            $article = Article::getArticleContent($id);
+        
+            //display all categorie in a select html
+            $allcategory = Category::displayCategory();
+    
+            //retrieve categories of the select article
+            $categoryArticle = Category::retrieveArticleCategory($id);
+    
+            //return a object table categories without the selected article categories
+            $allcategory = array_udiff($allcategory, $categoryArticle, function($a, $b) {return $a <=> $b;});
+            
+            self::render('update-article', [$article, $allcategory, $categoryArticle]);
         }
-        $article = Article::getArticleContent($id);
-
-        //display all categorie in a select html
-        $allcategory = Category::displayCategory();
-
-        //retrieve categories of the select article
-        $categoryArticle = Category::retrieveArticleCategory($id);
-
-        //return a object table categories without the selected article categories
-        $allcategory = array_udiff($allcategory, $categoryArticle, function($a, $b) {return $a <=> $b;});
-
-        Article::updateArticle($id);
-
-        self::render('update-article', [$article, $allcategory, $categoryArticle]);
-
     }
 
     // delete an article in the database with id

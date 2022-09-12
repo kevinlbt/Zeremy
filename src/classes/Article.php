@@ -1,6 +1,5 @@
 <?php
 
-
 class Article {
 
     private int $id;
@@ -9,7 +8,6 @@ class Article {
     private ?string $date = null;
     private ?string $link = null;
     private ?string $user_id = null;
-
 
 
 // getter 
@@ -45,7 +43,17 @@ class Article {
     }
     
 // methods article
-
+    
+    //sanitized input data 
+    private static function sanitizing ($data) {
+        
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = strip_tags($data);
+        return $data;
+        
+    }
+    
     //Display all articles
     public static function displayArticle () {
 
@@ -60,7 +68,6 @@ class Article {
     
     //add article in database
     public static function newArticle () {
-
         
         if (isset($_POST)) {
             if (isset($_POST['title']) && !empty($_POST['title'])
@@ -68,14 +75,18 @@ class Article {
             && isset($_POST['link']) && !empty($_POST['link'])
             && isset($_POST['category']) && !empty($_POST['category']) ) {
                 
+                $title = self::sanitizing($_POST['title']);
+                $content = self::sanitizing($_POST['content']);
+                $link = self::sanitizing($_POST['link']);
+                
                 $db = DataBase::getInstance();
             
                 //first request, insert article into database
                 $query = $db->prepare('INSERT INTO `article` (`title`, `content`, `link`, `user_id`) VALUES (:title, :content, :link, :user_id);');
                 $params = [
-                    'title' => strip_tags($_POST['title']),
-                    'content' => strip_tags($_POST['content']),
-                    'link' => strip_tags($_POST['link']),
+                    'title' => $title,
+                    'content' => $content,
+                    'link' => $link,
                     'user_id' => $_SESSION['logged_userid']
                 ];
                 $query->execute($params);
@@ -122,12 +133,17 @@ class Article {
             && isset($_POST['link']) && !empty($_POST['link']) 
             && isset($_POST['category']) && !empty($_POST['category']) ) {
 
+                $title = self::sanitizing($_POST['title']);
+                $content = self::sanitizing($_POST['content']);
+                $link = self::sanitizing($_POST['link']);
+
                 $db = DataBase::getInstance();
+                
                 $query = $db->prepare('UPDATE `article` SET `title`=:title, `content`=:content, `link`=:link WHERE `id`=:id;');
                 $params = [
-                    'title' => strip_tags($_POST['title']),
-                    'content' => strip_tags($_POST['content']),
-                    'link' => strip_tags($_POST['link']),
+                    'title' => $title,
+                    'content' => $content,
+                    'link' => $link,
                     'id' => $id[1]
                 ];
                 $query->execute($params);
@@ -141,9 +157,9 @@ class Article {
                 $deleteCate = array_udiff($currentCategory, $newCategory, function ($a, $b) {return (int)$a <=> (int)$b ;});
                
                 // insert new categorie id
+                $query = $db->prepare('INSERT INTO `article_categorie` (`article_id`, `categorie_id`) VALUES (:article_id, :categorie_id);');
                 foreach($addCate as $addcategory) {
 
-                    $query = $db->prepare('INSERT INTO `article_catégorie` (`article_id`, `categorie_id`) VALUES (:article_id, :categorie_id);');
                     $params = [
                         'article_id' => $id[1],
                         'categorie_id' => (int)$addcategory
@@ -152,9 +168,9 @@ class Article {
 
                 }
                 // delete old categorie id
+                $query = $db->prepare('DELETE article_categorie FROM article_categorie JOIN article ON article_categorie.article_id = article.id WHERE article.id =:id AND article_categorie.categorie_id = :categorie_id');
                 foreach($deleteCate as $delcategory) {
 
-                    $query = $db->prepare('DELETE article_catégorie FROM article_catégorie JOIN article ON article_catégorie.article_id = article.id WHERE article.id =:id AND article_catégorie.categorie_id = :categorie_id');
                     $params = [
                         'id' => $id[1],
                         'categorie_id' => $delcategory

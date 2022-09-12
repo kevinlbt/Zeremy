@@ -21,7 +21,7 @@
     </div>
     <label for="link" class="textcms size">Identifiant de la vidéo</label>
     <input type="text" name="link" class="field input" value="<?php if(isset($_POST['link'])) {echo $_POST['link'];} ?>">
-    <button type="submit" class="button">valider</button>
+    <button type="submit" class="button default">valider</button>
 </form>
 
 <form method="POST" action=""class="flex collum align border gray-back">
