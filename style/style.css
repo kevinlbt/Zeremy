@@ -355,6 +355,7 @@ textarea:focus {
 }
 .title {
     font-family: var(--font-title);
+    font-style: normal;
 }
 .text {
     font-family: 'Montserrat', sans-serif;
@@ -405,11 +406,20 @@ textarea:focus {
 /* articles video*/
 
 .realisation {
+    align-self: center;
     text-align: center;
-    margin: 10px 10px 40px 10px;
     font-size: 3em;
 }
 
+.sortVideo {
+    margin: 10px 10px 40px 10px;
+    align-items: center;
+    justify-content: center;;
+}
+.formsort {
+    margin-left: 150px;
+    align-items: center;
+}
 .grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -456,8 +466,8 @@ textarea:focus {
      font-size: 1em;
  }
 .videotitle {
-    padding-bottom: 20px;
-    font-size: 1.7em;
+    padding: 20px 0px 10px 0px;
+    font-size: 2em;
 }
 .playermodal {
     width: 95%;
@@ -600,9 +610,6 @@ textarea:focus {
         grid-template-columns: repeat(3, 1fr);
     }
     
-    .overlap {
-        margin-bottom: 4rem;
-    }
     .modalContent {
         height: 98%;
     }

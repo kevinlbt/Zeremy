@@ -11,7 +11,7 @@ class DataBase {
             try {
                 self::$instance = new PDO (
                     
-                    'mysql:host=db.3wa.io;port=3306;dbname=kevinlebot_CMS_articles',
+                    'mysql:host=db.3wa.io;port=3306;dbname=kevinlebot_cms_articles',
                     'kevinlebot',
                     '834b8ff7f808959fbe363a1b15c177b1'
                 );

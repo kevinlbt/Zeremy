@@ -12,7 +12,7 @@
             <input type="text" name="username" class="field input"/>
             <label for="password" class="text sizelog">Mot de passe</label>
             <input type="password" name="password" class="field input"/>
-            <input type="submit" value="Me connecter" class="button"/>
+            <input type="submit" value="Me connecter" class="button default"/>
         </form>
         <?php foreach(AuthController::getValidUserLog() as $notvalid) : ?>
           <p class="not-valide-msg textcms"><?php  echo $notvalid; ?></p>

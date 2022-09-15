@@ -8,7 +8,9 @@ class PortfolioController extends AbstractController {
         $articles = Article::displayPublishedArticles();
 
         $articles = array_reverse($articles);
+        
+        $category = Category::displayCategory();
 
-        self::renderBis('portfolio', $articles);
+        self::renderBis('portfolio', [$articles, $category]);
     }
 }

@@ -20,14 +20,29 @@ class ArticleController extends AbstractController {
     // display all article from the database in a html list
     public static function displayAllArticle() {
 
-        $articles = Article::displayArticle();
-
-        $articles = array_reverse($articles);
+        if (isset($_POST['categorySort']) && !empty($_POST['categorySort'])) {
+            
+            $id = $_POST['categorySort'];
+            
+            $articles = Article::displayArticleByCategory($id);
+            
+            $articles = array_reverse($articles);
+            
+            $category = Category::displayCategory();
+        }
         
-        $category = Category::displayCategory();
-
+        else {
+            
+            $articles = Article::displayArticle();
+    
+            $articles = array_reverse($articles);
+            
+            $category = Category::displayCategory();
+        
+        }
+        
         self::render('articles', [$articles, $category]);
-
+        
     }
 
     // add an new article in the database with a categorie

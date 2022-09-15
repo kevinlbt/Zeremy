@@ -66,6 +66,20 @@ class Article {
         return $articles;
     }
     
+    //display articles sort by category
+    public static function displayArticleByCategory ($id) {
+        
+        $db = DataBase::getInstance();
+
+        $query = $db->prepare('SELECT article.* FROM `article` JOIN article_categorie ON article.id = article_categorie.article_id WHERE article_categorie.categorie_id = :id;');
+        $query->bindValue('id', $id[0], PDO::PARAM_INT);
+        $query->execute();
+        
+        $articles = $query->fetchAll(PDO::FETCH_CLASS, 'Article');
+
+        return $articles;
+    }
+    
     //add article in database
     public static function newArticle () {
         
@@ -242,7 +256,7 @@ class Article {
 
         $query = $db->prepare('SELECT article.* FROM `article` JOIN articles_publier ON articles_publier.article_id = article.id');
         $query->execute();
-        $articles = $query->fetchAll(PDO::FETCH_CLASS, 'Article');
+        $articles = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $articles;
 

@@ -3,7 +3,7 @@
 
 <div class="flex collum catelist">
     <form method="POST">
-        <select name="category[]" multiple class="select">
+        <select name="categorySort[]" multiple class="select">
             <?php foreach($result[1] as $category) { ?>
               <option value=<?= $category->getId(); ?>><?= $category->getName(); ?></option>
             <?php } ?>
