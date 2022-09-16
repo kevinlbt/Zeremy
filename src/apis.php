@@ -15,9 +15,9 @@ try {
 $param = [];
 $query = null;
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && $_GET['id'] !== "all") {
     $param = ['id' => $_GET['id']];
-    $query = $db->prepare("SELECT * FROM `article` WHERE id = :id");
+    $query = $db->prepare("SELECT article.* FROM `article` JOIN article_categorie ON article_categorie.article_id = article.id WHERE article_categorie.categorie_id = :id;");
 }
 else { 
     $query = $db->prepare ("SELECT * FROM `article`");

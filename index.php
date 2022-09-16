@@ -8,9 +8,6 @@ if (isset($_GET['url']))
     $route = $_GET['url'];
 
 
-if ($route === 'index.php') {
-    $route = 'login';
-}
 
 $router = new Router($route);
 

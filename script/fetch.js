@@ -1,8 +1,13 @@
+import {renderPlayer} from './player.js'; 
 
-async function displayArticle() {
+
+async function displayArticle(id = null) {
         
         const url = new URL ('https://kevinlebot.sites.3wa.io/Zeremy-website/src/apis.php');
         
+        if (id !== null)
+            url.searchParams.set('id', id);
+            
         try {
         
         const response = await fetch(url);
@@ -16,13 +21,15 @@ async function displayArticle() {
         }
 }
 
-async function renderArticle () {
+async function renderArticle ($id = null) {
     
-    let articles = await displayArticle();
+    let articles = await displayArticle($id);
     
     let count = 0;
     
     const element = document.getElementById("ajax");
+    
+    element.innerHTML = "";
     
     let newElem = document.createElement('div');
     newElem.setAttribute('class', 'grid containerWeb color text');
@@ -79,9 +86,42 @@ async function renderArticle () {
 //         await renderArticle();
 // })
 
-    document.addEventListener("DOMContentLoaded", function (e) {
-        e.preventDefault();
-        
-        renderArticle();
+
+document.addEventListener("DOMContentLoaded", async function (e) {
+    e.preventDefault();
+    
+    await renderArticle();
+    await renderPlayer();
         
 });
+
+const select = document.getElementById('select');
+
+select.addEventListener('click', function (e) {
+    e.preventDefault();
+        
+        select.addEventListener('change', async function (event) {
+        
+            let choice = select.selectedIndex;
+            let id = select.options[choice].value;
+        
+            console.log(id);
+            
+            if (id === "all" ) {
+                
+                await renderArticle();
+                await renderPlayer();
+            }
+            
+            else {
+                
+                await renderArticle(id);
+                await renderPlayer();
+            }
+    
+        })
+    
+})
+    
+    
+    

@@ -1,8 +1,6 @@
 
-window.addEventListener("DOMContentLoaded", () => {
+export function renderPlayer () {
     
-    setTimeout(() => {
-        
         const player = Plyr.setup(".one", { 
             clickToPlay: false,
             controls: [
@@ -70,9 +68,4 @@ window.addEventListener("DOMContentLoaded", () => {
             };
         
         }
-        
-}, "100")
-        
-    
-})
-
+}

@@ -24,7 +24,6 @@
 
 <script src="https://kit.fontawesome.com/1012edd4b6.js" crossorigin="anonymous"></script>
 <script src="./node_modules/plyr/dist/plyr.js"></script>
-<script src="./script/player.js"></script>
 <script src="./script/videoModal.js"></script>
 </body>
 <script type="module" src="./script/fetch.js"></script>
