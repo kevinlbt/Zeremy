@@ -1,10 +1,11 @@
 
 :root {
     --plyr-color-main: #a6032e;
-    --back-color: #1c222b;
+    --back-color: #FCF9F8;
+    --back-modal-color: #393939;
+    --back-color-footer: #EEEBEA;
     --main-color: #18c29c;
     --text-color: black;
-    --text-color-white: aliceblue;
     --input-border-color: #a7afc2;
     --font-title: chantal,sans-serif;
     --font: 5vw;
@@ -337,7 +338,7 @@ textarea:focus {
     margin: auto;
 }
 .lighthouse {
-    /*background-color: var(--back-color);*/
+    background-color: var(--back-color);
     /*background-image: */
     /*    url('../assets/images/phare.png'),  */
     /*    url('../assets/images/montagne.png');*/
@@ -410,16 +411,48 @@ textarea:focus {
     text-align: center;
     font-size: 3em;
 }
+.formsort {
+    margin-left: 100px;
+    align-items: center;
+}
+.form-select {
+    /* Reset */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  outline: 0;
+  /* Personalize */
+  width: 20vw;
+  height: 3em;
+  padding: 0 4em 0 1em;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/6/63/Arrow_%2880557%29_-_The_Noun_Project.svg) no-repeat right 0.8em center/1.4em, linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.8) 3em);;
+  color: black;
+  font-family: var(--font-title);
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  /* <option> colors */
+  /* Remove focus outline */
+  /* Remove IE arrow */
+}
+select option {
+  color: inherit;
+  background-color: var(--back-color);
+}
+select:focus {
+  outline: none;
+}
+select::-ms-expand {
+  display: none;
+}
 
 .sortVideo {
     margin: 10px 10px 40px 10px;
     align-items: center;
     justify-content: center;;
 }
-.formsort {
-    margin-left: 150px;
-    align-items: center;
-}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -453,11 +486,11 @@ textarea:focus {
  .modalContent {
     font-weight: bold;
     color: black;
-    background-color: var(--back-color);
+    background-color: var(--back-modal-color);
     border-radius: 0.5em;
     margin: auto;
     padding: 20px;
-    border: 1px solid var(--back-color);
+    border: 1px solid var(--back-modal-color);
     width: 73%;
     height: 75%;
  }
@@ -475,7 +508,7 @@ textarea:focus {
 }
 
 .footer { 
-    background-color: var(--back-color);
+    background-color: var(--back-color-footer);
     padding: 30px 20px 10px 20px;
     margin-top: 70px;
 }
@@ -575,7 +608,7 @@ textarea:focus {
 
 .bar li a {
     text-decoration: none;
-    color: var(--text-color-white);
+    color: black;
     font-family: var(--font-title);
     font-size: 1.5em;
 }
@@ -603,7 +636,12 @@ textarea:focus {
     .nav li {
         margin: 0px 30px;
     }
-    
+    .formsort {
+        margin-left: 300px;
+    }
+    .form-select {
+        width: 15vw;
+    }
     /* article video */
     
     .grid {

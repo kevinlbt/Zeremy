@@ -65,7 +65,6 @@ async function renderArticle ($id = null) {
                         </div>
                     </div>
                 </div>  
-                
             `;
         count++
         newElem.appendChild(newElems);
@@ -74,18 +73,6 @@ async function renderArticle ($id = null) {
         return;
 
 }
-
-//     const Form = document.getElementById('categorySort');
-//     const select = document.getElementById('select');
-    
-//     Form.addEventListener('click', async function (e) {
-//         e.preventDefault();
-        
-//         const postId = select.value === "" ? null : select.value;
-        
-//         await renderArticle();
-// })
-
 
 document.addEventListener("DOMContentLoaded", async function (e) {
     e.preventDefault();
@@ -100,7 +87,7 @@ const select = document.getElementById('select');
 select.addEventListener('click', function (e) {
     e.preventDefault();
         
-        select.addEventListener('change', async function (event) {
+        select.addEventListener('change', async function () {
         
             let choice = select.selectedIndex;
             let id = select.options[choice].value;
