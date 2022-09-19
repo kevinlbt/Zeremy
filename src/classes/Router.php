@@ -33,6 +33,8 @@ class Router {
         $this->addRoute('portfolio', ['WebsiteController','publishedArticles']);
         
         $this->addRoute('home',['WebsiteController','home']);
+        
+        $this->addRoute('contact',['WebsiteController','contact']);
 
         $this->addRoute('login',['AuthController','login']);
 

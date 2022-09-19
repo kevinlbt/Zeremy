@@ -12,7 +12,12 @@ class WebsiteController extends AbstractController {
     
     public static function home () {
         
-
         self::renderBis('home');
+    }
+    
+    public static function contact () {
+        
+        self::renderBis('contact');
+        
     }
 }

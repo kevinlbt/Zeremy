@@ -8,7 +8,7 @@
     <label for="title" class="textcms size">Titre</label>
     <input type="text" name="title" class="field input" value="<?= $result[0]->getTitle() ?>">
     <label for="content" class="textcms size">Contenue ( optionnel )</label>
-    <textarea type="text" name="content" rows="10" cols="70"><?= $result[0]->getContent() ?></textarea>
+    <textarea type="text" name="content" rows="10" cols="70" class="field textarea"><?= $result[0]->getContent() ?></textarea>
     <div class="flex collum">
       <label for="category" class="textcms size">Catégorie</label>
       <select id="sel1" name="category[]" multiple class="select">

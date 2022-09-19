@@ -38,6 +38,7 @@ async function renderArticle ($id = null) {
         articles.forEach(post => {
             
             let newElems = document.createElement('div');
+            newElems.setAttribute('class', 'isotopeItems');
             newElems.innerHTML = `
                 <div class="grid-item openModal">
                     <div class="filter">
@@ -101,7 +102,7 @@ select.addEventListener('click', function (e) {
             }
             
             else {
-                
+      
                 await renderArticle(id);
                 await renderPlayer();
             }
@@ -109,6 +110,7 @@ select.addEventListener('click', function (e) {
         })
     
 })
+
     
     
     

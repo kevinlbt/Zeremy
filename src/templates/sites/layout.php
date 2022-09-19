@@ -19,12 +19,15 @@
 
     <?php if (isset($templates) && $templates === "portfolio") {require './src/templates/sites/realisation.php';} ?>
     
+    <?php if (isset($templates) && $templates === "home") {require './src/templates/sites/home.php';} ?>
+    
+    <?php if (isset($templates) && $templates === "contact") {require './src/templates/sites/contact.php';} ?>
+    
     <?php require './src/templates/sites/footer.php'; ?>
 
 
 <script src="https://kit.fontawesome.com/1012edd4b6.js" crossorigin="anonymous"></script>
 <script src="./node_modules/plyr/dist/plyr.js"></script>
-<script src="./script/videoModal.js"></script>
 </body>
 <script type="module" src="./script/fetch.js"></script>
 
