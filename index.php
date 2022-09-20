@@ -2,6 +2,8 @@
 
 session_start();
 
+require './vendor/autoload.php';
+
 require_once 'autoloader.php';
 
 if (!isset($_GET['url'])) {

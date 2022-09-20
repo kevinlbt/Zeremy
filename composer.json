@@ -12,5 +12,7 @@
             "email": "kevin.lebot@hotmail.fr"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    }
 }
