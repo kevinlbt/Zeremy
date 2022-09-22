@@ -8,7 +8,7 @@
         </div>
         <ul class="nav title">
             <li><a <?php if($templates === "home") {echo 'class="current"';} ?>href="./">Home</a></li>
-            <li><a href="#">A propos</a></li>
+            <li><a <?php if($templates === "about") {echo 'class="current"';} ?>href="./apropos">A propos</a></li>
             <li><a <?php if($templates === "portfolio") {echo 'class="current"';} ?>href="./portfolio">Réalisations</a></li>
             <li><a <?php if($templates === "contact") {echo 'class="current"';} ?>href="./contact">Contact</a></li>
         </ul>

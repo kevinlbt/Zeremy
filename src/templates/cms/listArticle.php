@@ -23,7 +23,7 @@
                 </div>
                 <div class="flex">
                     <div>
-                        <a href="/Zeremy-website/update-article/<?= $article->getId(); ?>" class="no-underline">
+                        <a href="update-article/<?= $article->getId(); ?>" class="no-underline">
                             <button type="button" name="updateArticle" class="button default textcms">modifier</button>
                         </a>
                     </div>

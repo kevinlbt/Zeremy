@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zeremy</title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon-logo.png">
     <link rel="stylesheet" href="https://use.typekit.net/bjn2kly.css">
     <link href="./style/style.css" rel="stylesheet"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +23,8 @@
     <?php if (isset($templates) && $templates === "home") {require './src/templates/sites/home.php';} ?>
     
     <?php if (isset($templates) && $templates === "contact") {require './src/templates/sites/contact.php';} ?>
+
+    <?php if (isset($templates) && $templates === "about") {require './src/templates/sites/about.php';} ?>
     
     <?php require './src/templates/sites/footer.php'; ?>
 

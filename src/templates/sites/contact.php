@@ -1,4 +1,5 @@
 
+<p class="valide-msg textcms message-err"><?php if (isset($result)) {echo $result ;}  ?></p>
 <h1 class="title color title-contact">Contact</h1>
 <section class="containerWeb contact">
     
@@ -21,9 +22,8 @@
         </form>
         <div class="flex collum align">
             <?php foreach(WebsiteController::getErrors() as $error) : ?>
-              <p class="not-valide-msg flex collum textcms"><?php  echo $error; ?></p>
+              <p class="not-valide-msg flex collum textcms message-err"><?php  echo $error; ?></p>
             <?php endforeach; ?>
         </div>
-        <p><?= $result ?></p>
     </div>
 </section>

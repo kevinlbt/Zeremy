@@ -140,7 +140,7 @@ class ArticleController extends AbstractController {
             
             Article::publishArticleId($id);
             
-            header('location: /Zeremy-website/articles');
+            header('location: /articles');
 
         }
     }
@@ -156,7 +156,7 @@ class ArticleController extends AbstractController {
             
             Article::unPublishArticle($id);
             
-            header('location: /Zeremy-website/articles');
+            header('location: /articles');
         }    
     }
     

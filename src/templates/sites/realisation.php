@@ -12,7 +12,7 @@
     </form>
 </div>
 
-<section id="ajax">
+<section id="ajax" class="videopage" >
     
 </section>
 

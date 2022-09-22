@@ -3,7 +3,7 @@ import {renderPlayer} from './player.js';
 
 async function displayArticle(id = null) {
         
-        const url = new URL ('https://kevinlebot.sites.3wa.io/Zeremy-website/src/apis.php');
+        const url = new URL ('http://localhost:8080/src/apis.php');
         
         if (id !== null)
             url.searchParams.set('id', id);

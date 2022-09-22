@@ -34,10 +34,12 @@ class WebsiteController extends AbstractController {
         self::renderBis('home');
     }
     
+    //contact page with php mailer
     public static function contact () {
         
         self::$errors = [];
-        
+        $success = null;
+
         if (Errors::checkErrorContact()) {
         
             self::$errors = Errors::checkErrorContact();
@@ -60,31 +62,31 @@ class WebsiteController extends AbstractController {
                     
                     $mail = new PHPMailer(true);
                     
-                    try {
+                    try { // php mailer
         
-                        $mail->isSMTP(); //Pour preciser que c'est du SMTP
-                        $mail->Host = 'smtp.gmail.com';  // Le serveur smtp de google
-                        $mail->SMTPAuth = true;                               // On active l'authentification
-                        $mail->Username = 'kevin.lebot@gmail.com';                 // SMTP username
-                        $mail->Password = 'rjphirgwxcbukiml';                           // Le mot de passe que vous avez récupéré
-                        $mail->SMTPSecure = 'tls';                            // Parameter de sécurité mis sur TLS
-                        $mail->Port = 587;                                    // Le port donne par google pour son SMTP
+                        $mail->isSMTP(); 
+                        $mail->Host = 'smtp.gmail.com';  
+                        $mail->SMTPAuth = true;                               
+                        $mail->Username = 'kevin.lebot@gmail.com';                 
+                        $mail->Password = 'rjphirgwxcbukiml';                          
+                        $mail->SMTPSecure = 'tls';                            
+                        $mail->Port = 587;                                    
             
-                        $mail->setFrom($email, $name, $firstname); // De qui est l' email
-                        $mail->addReplyTo($email, $name, $firstname); // Option pour avoir le reply
-                        $mail->addAddress('kevin.lebot@hotmail.fr', 'kevin lebot'); //La boite mail où vous voulez recevoir les mails
+                        $mail->setFrom($email, $name, $firstname); // from who is the mail
+                        $mail->addReplyTo($email, $name, $firstname); // reply option
+                        $mail->addAddress('kevin.lebot@gmail.com', 'kevin lebot'); //box mail where the message is receive
             
             
-                        $mail->isHTML(true); //Met le mail au format HTML
-                        $mail->Subject = $subject; // On parametre l'objet
-                        $mail->Body = $message; // Le message pour les boites html
-                        $mail->AltBody = $message; //Le message pour les boites non html
-                        $mail->SMTPDebug = 0; //On désactive les logs de debug
+                        $mail->isHTML(true); 
+                        $mail->Subject = $subject; 
+                        $mail->Body = "Message de ". $name . " " . $firstname . "<br>" . $message; 
+                        $mail->AltBody = $message; 
+                        $mail->SMTPDebug = 0; 
             
                         if ($mail->send()) {
-                            return $success = "Mail envoyé ! Merci pour votre interêt";
+                            $success = "Mail envoyé ! Merci pour votre interêt";
                         } else {
-                            return $success = "Echec dans l'envoi du mail";
+                            $success = "Echec dans l'envoi du mail";
                         }
                         
                     }
@@ -97,8 +99,13 @@ class WebsiteController extends AbstractController {
         
             }
         }
+
+        self::renderBis('contact', $success);
         
-        self::renderBis('contact');
-        
+    }
+
+    public static function About () {
+
+        self::renderBis('about');
     }
 }

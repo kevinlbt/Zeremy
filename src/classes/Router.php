@@ -36,6 +36,8 @@ class Router {
         
         $this->addRoute('contact',['WebsiteController','contact']);
 
+        $this->addRoute('apropos',['WebsiteController','about']);
+
         $this->addRoute('login',['AuthController','login']);
 
         if (Authenticator::isLogged()) {

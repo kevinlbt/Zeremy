@@ -4,10 +4,10 @@
     
     <ul class="flex align">
         <?php if($templates !== 'articles') : ?>
-            <li class="no-liststyle"><a href="/Zeremy-website/articles"><button class="button default align textcms">Articles</button></a></li>
+            <li class="no-liststyle"><a href="/articles"><button class="button default align textcms">Articles</button></a></li>
         <?php endif ?>
         <?php if($templates !== 'new-article') : ?>
-            <li class="no-liststyle"><a href="/Zeremy-website/new-article"><button class="button default align textcms">+ Ajouter un article</button></a></li>
+            <li class="no-liststyle"><a href="/new-article"><button class="button default align textcms">+ Ajouter un article</button></a></li>
         <?php endif ?>
     </ul>
 
