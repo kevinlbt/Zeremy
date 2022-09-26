@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gestion d'articles</title>
     <link rel="stylesheet" href="https://use.typekit.net/bjn2kly.css">
-    <link href="http://localhost:8080/style/style.css" rel="stylesheet"/>
+    <link href="http://localhost:8080/Zeremy-website/style/style.css" rel="stylesheet"/>
 </head>
 <body>
     
@@ -28,7 +28,7 @@
 </body>
 
 <script src="./script/DeleteModal.js"></script>
-<script src="http://localhost:8080/script/scriptSelect.js"></script>
+<script src="http://localhost:8080/Zeremy-website/script/scriptSelect.js"></script>
 <script src="./script/publishedButton.js"></script>
 
 </html>

@@ -46,7 +46,7 @@ class AuthController extends AbstractController {
                 
                 else {
                     
-                    header('location: /articles');
+                    header('location: /Zeremy-website/articles');
                 }
             }
         }   
@@ -59,7 +59,7 @@ class AuthController extends AbstractController {
 
         Authenticator::logout();
         
-        header('Location: /login');
+        header('Location: /Zeremy-website/login');
     }
 }
 

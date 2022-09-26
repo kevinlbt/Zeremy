@@ -21,7 +21,7 @@ class WebsiteController extends AbstractController {
         
     }
 
-    //display all articles when is publish
+    //realisation page display all articles when is publish
     public static function publishedArticles () {
         
         $category = Category::displayCategory();
@@ -29,6 +29,7 @@ class WebsiteController extends AbstractController {
         self::renderBis('portfolio', $category);
     }
     
+    //home page
     public static function home () {
         
         self::renderBis('home');
@@ -67,14 +68,14 @@ class WebsiteController extends AbstractController {
                         $mail->isSMTP(); 
                         $mail->Host = 'smtp.gmail.com';  
                         $mail->SMTPAuth = true;                               
-                        $mail->Username = 'kevin.lebot@gmail.com';                 
-                        $mail->Password = 'rjphirgwxcbukiml';                          
+                        $mail->Username = 'jp.postprod@gmail.com';                 
+                        $mail->Password = 'eovtwhgibnmvnscl';                          
                         $mail->SMTPSecure = 'tls';                            
                         $mail->Port = 587;                                    
             
                         $mail->setFrom($email, $name, $firstname); // from who is the mail
                         $mail->addReplyTo($email, $name, $firstname); // reply option
-                        $mail->addAddress('kevin.lebot@gmail.com', 'kevin lebot'); //box mail where the message is receive
+                        $mail->addAddress('jp.postprod@gmail.com', 'Jeremy Pettre'); //box mail where the message is receive
             
             
                         $mail->isHTML(true); 
@@ -104,6 +105,7 @@ class WebsiteController extends AbstractController {
         
     }
 
+    // about page
     public static function About () {
 
         self::renderBis('about');

@@ -23,7 +23,7 @@
                 </div>
                 <div class="flex">
                     <div>
-                        <a href="update-article/<?= $article->getId(); ?>" class="no-underline">
+                        <a href="/Zeremy-website/update-article/<?= $article->getId(); ?>" class="no-underline">
                             <button type="button" name="updateArticle" class="button default textcms">modifier</button>
                         </a>
                     </div>
@@ -32,7 +32,7 @@
                         <div id="modal<?php echo $count; ?>" class="modalCms" name="var" data-id="<?php echo $count; ?>">
                             <div class="modalContentCms flex collum">
                                 <p>Es-tu sur de vouloir supprimer l'article : <?= $article->getTitle(); ?> ?</p>
-                                <a href="deleteArticle/<?= $article->getId(); ?>" class="no-underline">
+                                <a href="/Zeremy-website/deleteArticle/<?= $article->getId(); ?>" class="no-underline">
                                     <button type="button" name="deleteArticle" class="button delete align textcms" data-id="<?php echo $count; ?>">supprimer</button>
                                 </a>
                                 <button class="cancelCms" data-id="<?php echo $count; ?>">annuler</button>
@@ -41,12 +41,12 @@
                     </div>
                     <div>
                         <?php if(ArticleController::publishButton($article->getId())) : ?>
-                            <a href="publishedArticle/<?= $article->getId(); ?>" class="no-underline">
+                            <a href="/Zeremy-website/publishedArticle/<?= $article->getId(); ?>" class="no-underline">
                                 <button type="button" name="deleteArticle" class="button publish textcms align">publier</button>
                             </a>
                         <?php endif ?>
                         <?php if(!ArticleController::publishButton($article->getId())) : ?>
-                            <a href="unPublishedArticle/<?= $article->getId(); ?>" class="no-underline">
+                            <a href="/Zeremy-website/unPublishedArticle/<?= $article->getId(); ?>" class="no-underline">
                                 <button type="button" name="deleteArticle" class="button publish textcms align">dépublier</button>
                             </a>
                         <?php endif ?>

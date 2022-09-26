@@ -11,9 +11,9 @@ class DataBase {
             try {
                 self::$instance = new PDO (
                     
-                    'mysql:host=db.3wa.io;port=3306;dbname=kevinlebot_cms_articles',
-                    'kevinlebot',
-                    '834b8ff7f808959fbe363a1b15c177b1'
+                    'mysql:host=127.0.0.1;dbname=cms_articles',
+                    'root',
+                    ''
                 );
                 
             }catch (Exception $err){
