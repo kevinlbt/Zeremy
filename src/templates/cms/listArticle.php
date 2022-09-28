@@ -1,5 +1,5 @@
 
-<h2 class="container article">Articles</h2>
+<h2 class="container article">Mes vidéos </h2>
 
 <div class="flex collum catelist">
     <form method="POST">
@@ -31,7 +31,7 @@
                         <button id="openmodal" class="button delete textcms openModalCms">supprimer</button>
                         <div id="modal<?php echo $count; ?>" class="modalCms" name="var" data-id="<?php echo $count; ?>">
                             <div class="modalContentCms flex collum">
-                                <p>Es-tu sur de vouloir supprimer l'article : <?= $article->getTitle(); ?> ?</p>
+                                <p>Es-tu sur de vouloir supprimer la vidéo : <?= $article->getTitle(); ?> ?</p>
                                 <a href="/Zeremy-website/deleteArticle/<?= $article->getId(); ?>" class="no-underline">
                                     <button type="button" name="deleteArticle" class="button delete align textcms" data-id="<?php echo $count; ?>">supprimer</button>
                                 </a>
@@ -55,7 +55,7 @@
             </li>         
         <?php $count++;
          endforeach ?>
-         <p id="nbrarticle">Nombre d'articles : <?= $count; ?></p>
+         <p id="nbrarticle">Nombre de vidéo : <?= $count; ?></p>
     </ul>
 
 </div>

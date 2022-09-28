@@ -4,7 +4,7 @@
 
 <div class="containerWeb contact">
     
-    <img src="./assets/images/contactjeremy.jpg" alt="Jeremy with camera on stairs in city" class="contactimg"/>
+    <img src="./assets/images/contactjeremy.webp" alt="Jeremy with camera on stairs in city" class="contactimg"/>
     
     <div class="formcontact">
         <form method="POST" class="flex collum">

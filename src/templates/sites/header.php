@@ -1,10 +1,10 @@
 
 
-<header class="containerWeb">
+<header class="back-white">
 
-    <nav class="flex nav-bar">
+    <nav class="container web flex nav-bar">
         <div class="logo">
-            <a href="./"><img src="./assets/logo/logo-final.png" width="200" alt="logo du site"></a>
+            <a href="./"><img src="./assets/logo/logo-final.png" alt="logo du site"></a>
         </div>
         <ul class="nav title">
             <li><a <?php if($templates === "home") {echo 'class="current"';} ?>href="./">Home</a></li>

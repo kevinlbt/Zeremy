@@ -18,4 +18,4 @@ const simpleParallax = (elem, modifier) => {
     requestAnimationFrame(sp);
 }
 
-simpleParallax("parallax", 3);
+simpleParallax("parallax", 2);

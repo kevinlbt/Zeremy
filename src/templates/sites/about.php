@@ -1,7 +1,7 @@
 <section class="about containerWeb">
 
     <div class="about-img">
-        <img src="assets/images/champ.jpg" alt="jeremy with camera in Wheat field" class="champ">
+        <img src="assets/images/champ.webp" alt="jeremy with camera in Wheat field" class="champ">
     </div> 
 
     <div class="about-text">

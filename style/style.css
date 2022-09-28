@@ -351,16 +351,20 @@
 .color {
     color: var(--text-color)
 }
-
 .white {
     color: var(--text-color-white);
 }
 
 /* header nav bar */
-
+.back-white {
+    background-color: var(--back-color);
+}
 .logo {
     align-self: center;
     margin: 5px 15px;
+}
+.logo a img {
+    width: 33vw;
 }
 .current {
     border-bottom: 2px solid var(--main-color)
@@ -501,13 +505,14 @@
 }
 /* realisation */
 /* articles video*/
+
 .videopage {
     margin-bottom: 70px;
 }
 .realisation {
     align-self: center;
     text-align: center;
-    font-size: 7vw;
+    font-size: 6vw;
 }
 .formsort {
     margin-left: 60px;
@@ -519,7 +524,7 @@
     appearance: none;
     border: 0;
     outline: 0;
-    width: 20vw;
+    width: 28vw;
     height: 3em;
     padding: 0 4em 0 1em;
     background: url(https://upload.wikimedia.org/wikipedia/commons/6/63/Arrow_%2880557%29_-_The_Noun_Project.svg) no-repeat right 0.8em center/1.4em, linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.8) 3em);;
@@ -609,10 +614,14 @@
 
 /* home */
 
+.jarallax {
+    position: relative;
+    z-index: 20;
+}
 .img {
     margin: 0;
     background-image: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(100,100,100,0.6) 100%) ,url('../assets/images/jeremyfond.jpg');
-    height: 400px;
+    height: 30em;
     width: 100%;
     justify-content: flex-end;
     align-items: center;
@@ -621,51 +630,53 @@
 .description {
     width: 40%;
     margin: 10px 20px;
-    font-size: 2.5vw;
+    font-size: 4vw;
 }
 
 .img2 {
+    background-image: url('../assets/images/champ2.webp');
     margin: 0;
-    background-image: url('../assets/images/busstation.jpg');
-    height: 25em;
+    height: 150vw;
     justify-content: center;
     align-items: flex-start;
 }
 
 .img3 {
     margin: 0;
-    background-image: url('../assets/images/jeremceycey.jpg');
-    height: 25em;
+    background-image: url('../assets/images/jeremyceycey.webp');
+    height: 150vw;
     justify-content: center;
     align-items: flex-start;
 }
 
 .img4 {
     margin: 0;
-    background-image: url('../assets/images/music.jpg');
-    height: 25em;
+    background-image: url('../assets/images/musicsmall.webp');
+    height: 150vw; 
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start; 
 }
 
 .channel-name {
-    width: 40%;
     margin: 10px 50px;
-    font-size: 7vw;
+    font-size: 15vw;
 }
 
 .link-channel {
     margin: 10px 50px;
     font-family: 'Bebas Neue', cursive;
     color: var(--main-color);
-    font-size: 1.7vw;
+    font-size: 3vw;
     font-weight: lighter;
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     transition: 0.4s;
+    text-decoration: none;
+    border-bottom: 1px solid var(--main-color);
 }
 
-.link-channel:hover, .link-channel:after {
+.link-channel:hover {
   color: #129b7d;
+  border-bottom: 1px solid #129b7d;
 }
 
 .link-channel:after {
@@ -736,7 +747,7 @@
     width: 30%;
     background-image: var(--back-color-footer);
     margin: 10px;
-    padding: 15px 25px;
+    padding: 15px 15px;
     align-self: center;
     text-align: center;
     text-transform: uppercase;
@@ -770,7 +781,7 @@
     justify-content: center;
     margin: 60px 40px 80px 40px;
     background-color:rgba(255, 255, 255, 0.8);
-    box-shadow: -20px 20px 15px rgb(126, 126, 126);
+    box-shadow: -15px 15px 15px rgb(126, 126, 126);
 }
 
 .about-img {
@@ -781,7 +792,7 @@
 .champ {
     width: 100%;
     height: auto;
-    box-shadow: 30px 30px 0 var(--main-color);
+    box-shadow: 15px 15px 0 var(--main-color);
     border-radius: 3px;
   }
   .apropos {
@@ -792,9 +803,10 @@
 
   .text-about {
     margin: 30px;
-    font-size: 1.2vw;
+    font-size: 2.5vw;
     text-align: justify;
-    line-height: 30px;
+    line-height: 15px;
+    font-family: 'Montserrat', sans-serif;
   }
 
 /*--------------------------------------------------------------------*/
@@ -803,31 +815,58 @@
 
 @media screen and (min-width: 600px) and (max-width: 1024px) {
 
-/* realisation */
+    /* realisation */
 
-.realisation {
-    font-size: 5vw;
-}
+    .realisation {
+        font-size: 5vw;
+    }
 
-.grid {
-    grid-template-columns: repeat(2, 1fr);
-}
+    .sortVideo {
+        margin: 40px 10px 70px 10px;
+    }
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-/* about */
+    /* about */
 
-.about-text {
-    width: 80%;
-    margin: 50px auto;
-}
+    .about-text {
+        width: 80%;
+        margin: 80px auto;
+    }
 
-.about-img {
-    width: 80%;
-    margin: 50px auto;
-}
+    .about-img {
+        width: 80%;
+        margin: 50px auto;
+    }
 
+    .text-about {
+        font-size: 2.5vw;
+        line-height: 25px;
+      }
+    /* home */
+
+    .description {
+        font-size: 3vw;
+    }
+    .img {
+        height: 90vw;
+    }
+    .img2 {
+        height: 80vw;
+    }
+    .img3 {
+        height: 80vw;
+    }
+    .img4 {
+        height: 80vw;
+    }
 }
 @media screen and (min-width: 1024px) {
     
+    .logo a img {
+        width: 15vw;
+    }
     :root {
         --font: 2vw;
     }
@@ -871,24 +910,28 @@
     /* home */
     
     .img {
-        height: 50em;
-        background-position: top 15%;
+        height: 55vw;
     }
     .description {
         font-size: 2vw;
     }
     .img2 {
-        height: 55em;
-        background-position: center;
+        height: 40vw;
     }
     .img3 {
-        height: 55em;
-        background-position: center;
+        height: 40vw;
     }
     .img4 {
-        height: 55em;
-        background-position: center;
+        background-image: url('../assets/images/music.webp');
+        height: 40vw;
     }
+    .channel-name {
+        font-size: 8vw;
+    }
+    .link-channel {
+        font-size: 1.3vw;
+    }
+
     
     /* contact */
     
@@ -920,7 +963,7 @@
     }
     .about-text {
         width: 45%;
-        height: 45vw;
+        height: 40vw;
         margin: 30px 70px;
     }
 
