@@ -193,7 +193,7 @@ class Article {
 
                 }
 
-                header('location: /articles');
+                header('location: /Zeremy-website/articles');
 
             }
         }
@@ -223,7 +223,7 @@ class Article {
             $query->bindValue('id', $id[1], PDO::PARAM_INT);
             $query->execute();
         
-            header('Location: /articles');
+            header('Location: /Zeremy-website/articles');
         }
     }
  

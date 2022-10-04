@@ -110,4 +110,9 @@ class WebsiteController extends AbstractController {
 
         self::renderBis('about');
     }
+
+    public static function mentionslegales () {
+        
+        self::renderBis('mentionslegales');
+    }
 }

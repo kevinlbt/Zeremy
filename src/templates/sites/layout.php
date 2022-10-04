@@ -52,6 +52,8 @@
     <?php if (isset($templates) && $templates === "contact") {require './src/templates/sites/contact.php';} ?>
 
     <?php if (isset($templates) && $templates === "about") {require './src/templates/sites/about.php';} ?>
+
+    <?php if (isset($templates) && $templates === "mentionslegales") {require './src/templates/sites/mentions.php';} ?>
     
     <?php require './src/templates/sites/footer.php'; ?>
 
@@ -59,8 +61,7 @@
 <script src="https://kit.fontawesome.com/1012edd4b6.js" crossorigin="anonymous"></script>
 <script src="./node_modules/plyr/dist/plyr.js"></script>
 <script src="./script/simpleparallax.js"></script>
-<script type="module" src="./script/app.js"></script>
-</body>
+<script type="module" src="./script/videofade.js"></script>
 <script type="module" src="./script/fetch.js"></script>
-
+</body>
 </html>

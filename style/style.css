@@ -379,7 +379,7 @@
     list-style: none;
     align-items: center;
     padding: 5px 20px;
-    margin-right: 50px;
+    margin-right: 30px;
 }
 .nav li {
     margin: 5px 10px;
@@ -391,7 +391,7 @@
 }
 .nav li a {
     color: var(--text-color);
-    font-size: 1.4em;
+    font-size: 5vw;
     text-decoration: none;
 }
 
@@ -500,9 +500,22 @@
     font-family: var(--font-title);
     font-size: 1.5em;
 }
-.copyright {
+.mentions {
     margin-top: 50px;
+    align-items: center;
 }
+.mentions p {
+    margin: 10px 10px;
+    text-align: center;
+}
+.mentions h1 {
+    font-size: 4vw;
+    margin: 0px 10px 40px 10px;
+}
+.mentions :last-child {
+    margin-bottom: 70px;
+}
+
 /* realisation */
 /* articles video*/
 
@@ -614,13 +627,28 @@
 
 /* home */
 
-.jarallax {
+.jaral, .jaral2, .jaral3 {
     position: relative;
+    margin: 0;
     z-index: 20;
+    height: 150vw;
+    justify-content: center;
 }
+
+.slide, .slide2, .slide3, .slide4, .slide5, .slide6 {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.6s ease-in-out,
+    opacity 0.6s ease-in-out;
+}
+.active {
+    transform: translateX(0%);
+    opacity: 1;
+}
+
 .img {
     margin: 0;
-    background-image: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(100,100,100,0.6) 100%) ,url('../assets/images/jeremyfond.jpg');
+    background-image: url('../assets/images/jeremyfond.jpg');
     height: 30em;
     width: 100%;
     justify-content: flex-end;
@@ -637,32 +665,28 @@
     background-image: url('../assets/images/champ2.webp');
     margin: 0;
     height: 150vw;
-    justify-content: center;
-    align-items: flex-start;
 }
 
 .img3 {
     margin: 0;
     background-image: url('../assets/images/jeremyceycey.webp');
     height: 150vw;
-    justify-content: center;
-    align-items: flex-start;
 }
 
 .img4 {
     margin: 0;
     background-image: url('../assets/images/musicsmall.webp');
-    height: 150vw; 
-    justify-content: center;
-    align-items: flex-start; 
+    height: 150vw;  
 }
 
 .channel-name {
     margin: 10px 50px;
     font-size: 15vw;
+    align-self: flex-start;
 }
 
 .link-channel {
+    align-self: flex-start;
     margin: 10px 50px;
     font-family: 'Bebas Neue', cursive;
     color: var(--main-color);
@@ -881,6 +905,9 @@
     }
     .nav-bar {
         padding: 30px 0px;
+    }
+    .nav li a {
+        font-size: 1.6vw;
     }
     /* realisation */
 

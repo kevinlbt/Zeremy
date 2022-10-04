@@ -41,12 +41,12 @@
                     </div>
                     <div>
                         <?php if(ArticleController::publishButton($article->getId())) : ?>
-                            <a href="/Zeremy-website/publishedArticle/<?= $article->getId(); ?>" class="no-underline">
+                            <a href="./publishedArticle/<?= $article->getId(); ?>" class="no-underline">
                                 <button type="button" name="deleteArticle" class="button publish textcms align">publier</button>
                             </a>
                         <?php endif ?>
                         <?php if(!ArticleController::publishButton($article->getId())) : ?>
-                            <a href="/Zeremy-website/unPublishedArticle/<?= $article->getId(); ?>" class="no-underline">
+                            <a href="./unPublishedArticle/<?= $article->getId(); ?>" class="no-underline">
                                 <button type="button" name="deleteArticle" class="button publish textcms align">dépublier</button>
                             </a>
                         <?php endif ?>

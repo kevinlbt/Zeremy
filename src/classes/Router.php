@@ -38,6 +38,8 @@ class Router {
 
         $this->addRoute('apropos',['WebsiteController','about']);
 
+        $this->addRoute('mentionslegales',['WebsiteController','mentionslegales']);
+
         $this->addRoute('login',['AuthController','login']);
 
         if (Authenticator::isLogged()) {

@@ -12,9 +12,10 @@
         <a href="https://www.youtube.com/channel/UCLOpOt3fXr5NCJCx49D94Lg" class="social-buttons__button social-button social-button--youtube" aria-label="youtube">
             <i class="fa-brands fa-youtube"></i>
         </a>
-        <a href="/contact" class="social-buttons__button social-button social-button--mail" aria-label="mail">
+        <a href="./contact" class="social-buttons__button social-button social-button--mail" aria-label="mail">
             <i class="fa-solid fa-envelope"></i>
         </a>
     </div>
-    <p class="copyright color">Zeremy © 2022</p>
+    <a class="mentions color" href="./mentionslegales">Mentions légales</a>
+    <p class="color">Zeremy © 2022</p>
 </footer>

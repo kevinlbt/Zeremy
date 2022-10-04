@@ -16,7 +16,7 @@ export function renderPlayer () {
         
         const playertwo = Plyr.setup(".two", { 
             autoplay: true,
-            muted: true, 
+            muted: true,
             volume: 100,
             controls: [
                 // 'play-large', // The large play button in the center
@@ -33,8 +33,8 @@ export function renderPlayer () {
         
     //----------------script modal video------------------
         
-        let modal = document.querySelectorAll(".modal");
-        let btn = document.querySelectorAll(".openModal");
+        let modal = document.getElementsByClassName("modal");
+        let btn = document.getElementsByClassName("openModal");
         
         function hideModal(id) {
             
@@ -44,7 +44,7 @@ export function renderPlayer () {
         
         window.player = player;
          
-        for (let i = 0 ; i <= modal.length ; i++) {
+        for (let i = 0 ; i < modal.length ; i++) {
         
             btn[i].addEventListener("click", () => {
                 
