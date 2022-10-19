@@ -69,7 +69,7 @@ class WebsiteController extends AbstractController {
                         $mail->Host = 'smtp.gmail.com';  
                         $mail->SMTPAuth = true;                               
                         $mail->Username = 'jp.postprod@gmail.com';                 
-                        $mail->Password = 'eovtwhgibnmvnscl';                          
+                        $mail->Password = 'bpgafbwinmezapbd';                          
                         $mail->SMTPSecure = 'tls';                            
                         $mail->Port = 587;                                    
             

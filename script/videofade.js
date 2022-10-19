@@ -1,5 +1,12 @@
 import { jarallax, jarallaxVideo } from "https://cdn.jsdelivr.net/npm/jarallax@2/+esm";
 
+let links = document.links;
+for (let i = 0, linksLength = links.length ; i < linksLength ; i++) {
+  if (links[i].hostname !== window.location.hostname) {
+    links[i].target = '_blank';
+    links[i].rel = 'noreferrer noopener';
+  }
+}
 
 //slide effect on channel name and link channel
 function sliding (elem) {
@@ -24,12 +31,15 @@ function sliding (elem) {
 
 sliding('.slide');
 sliding('.slide2');
-
 sliding('.slide3');
-sliding('.slide4');
 
+sliding('.slide4');
 sliding('.slide5');
 sliding('.slide6');
+
+sliding('.slide7');
+sliding('.slide8');
+sliding('.slide9');
 
 //fade effect on home video
 function fadeIn(bloc) {

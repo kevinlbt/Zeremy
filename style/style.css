@@ -635,7 +635,7 @@
     justify-content: center;
 }
 
-.slide, .slide2, .slide3, .slide4, .slide5, .slide6 {
+.slide, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8, .slide9 {
     transform: translateX(-100%);
     opacity: 0;
     transition: transform 0.6s ease-in-out,
@@ -648,7 +648,7 @@
 
 .img {
     margin: 0;
-    background-image: url('../assets/images/jeremyfond.jpg');
+    background-image: url('../assets/images/jeremyfond.webp');
     height: 30em;
     width: 100%;
     justify-content: flex-end;
@@ -662,7 +662,7 @@
 }
 
 .img2 {
-    background-image: url('../assets/images/champ2.webp');
+    background-image: url('../assets/images/jeremyforet.webp');
     margin: 0;
     height: 150vw;
 }
@@ -693,7 +693,6 @@
     font-size: 3vw;
     font-weight: lighter;
     letter-spacing: 4px;
-    transition: 0.4s;
     text-decoration: none;
     border-bottom: 1px solid var(--main-color);
 }
@@ -714,6 +713,13 @@
     color: #129b7d;
 }
 
+.desc {
+    font-size: 3vw;
+    font-family: 'Bebas Neue', cursive;
+    font-weight: lighter;
+    letter-spacing: 4px;
+    margin: 10px 50px;
+}
  
 /* contact */
 
@@ -959,7 +965,9 @@
         font-size: 1.3vw;
     }
 
-    
+    .desc {
+        font-size: 1.3vw;
+    }
     /* contact */
     
     .title-contact {
